@@ -1,0 +1,15 @@
+
+DirectoryIndex index.php
+RewriteEngine On
+RewriteBase /directory/
+
+RewriteRule ^home/?$ index.php [L,NC]
+
+# ignore files/directories from further rules
+RewriteCond %{REQUEST_FILENAME} -d [OR]
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+RewriteRule ^group/([^/]+)/?$ group.php?name=$1 [L,QSA,NC]
+
+RewriteRule ^([^/]+)/?$ profile.php?name=$1 [L,QSA]
